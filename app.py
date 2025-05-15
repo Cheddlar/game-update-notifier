@@ -69,6 +69,11 @@ def main():
         if not os.getenv("DISCORD_MENTION_USER_IDS") == ""
     ]
 
+    embed_title = os.getenv("DISCORD_EMBED_TITLE")
+    embed_color = os.getenv("DISCORD_EMBED_COLOR", "1e90ff")
+    embed_footer = os.getenv("DISCORD_EMBED_FOOTER")
+    embed_description = os.getenv("DISCORD_EMBED_DESCRIPTION")
+
     current_path = os.path.dirname(os.path.abspath(__file__))
     os.chdir(current_path)
 
@@ -82,7 +87,10 @@ def main():
                 "https://github.com/kurokobo/game-update-notifier/raw/main/"
                 "assets/steam.png"
             ),
-            embed_color="1e90ff",
+            embed_color=embed_color,
+            embed_title=embed_title,
+            embed_footer=embed_footer,
+            embed_description=embed_description,
         )
         steam = Steam(STEAM_APP_IDS, steam_notifier, IGNORE_FIRST_NOTIFICATION)
 
